@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ataque CSRF</title>
+</head>
+<body>
+    <h1>Ataque CSRF</h1>
+    <form id="csrfForm" action="http://127.0.0.1:5000/alterar-senha" method="POST">
+        <label for="novaSenha">Nova Senha:</label>
+        <input type="password" id="novaSenha" name="novaSenha" placeholder="Digite a nova senha">
+        <input type="submit" value="Alterar Senha">
+    </form>
+</body>
+</html>

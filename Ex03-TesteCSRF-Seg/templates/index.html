@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Aplicativo Alvo</title>
+</head>
+<body>
+    <h1>Alterar Senha</h1>
+    <form id="senhaForm" action="/alterar-senha" method="POST">        
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label for="novaSenha">Nova Senha:</label>
+        <input type="password" id="novaSenha" name="novaSenha" placeholder="Digite a nova senha">
+        <input type="submit" value="Alterar Senha">
+    </form>
+    {% if mensagem %}
+    <p>{{ mensagem }}</p>
+    {% endif %}
+</body>
+</html>

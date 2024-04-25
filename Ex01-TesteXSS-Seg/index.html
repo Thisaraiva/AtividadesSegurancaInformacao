@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processamento de Formulário</title>
+    <!-- Implementação do Content Security Policy (CSP) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'nonce-abc123'">
+</head>
+<body>
+
+    <h1>Processamento de Formulário</h1>
+
+    <form id="myForm">
+        <label for="valor">Insira um valor:</label>        
+        <input type="text" id="valor" name="valor" required pattern="^[a-zA-Z0-9\s]*$">
+        <button type="button" id="enviarButton">Enviar</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script nonce="abc123">
+        
+        document.getElementById("enviarButton").addEventListener("click", executarScript);
+    
+        function executarScript() {
+            var valor = document.getElementById("valor").value;
+            // remove caracteres especiais
+            valor = valor.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            
+            // Verifica se a entrada é válida ou se contém script malicioso
+            if (valor.includes("<script>") || valor.includes("alert(")) {                
+                console.log("Entrada inválida:  Script malicioso potencial foi encontrado - " + valor);
+                alert("Script malicioso potencial foi encontrado");
+                return;
+            } else {
+                // Imprimir entrada válida no console do navegador
+                console.log("Entrada válida: " + valor);
+            }
+    
+            document.getElementById("resultado").innerHTML = "Valor inserido: " + valor;
+        }
+    </script>
+
+</body>
+</html>
+
+<!--<script>alert("xss")</script>
